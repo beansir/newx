@@ -7,5 +7,5 @@ return [
         'password' => 'password',
         'db' => 'db',
         'type' => 'mysqli'
-    ],
+    ]
 ];

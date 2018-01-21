@@ -1,1 +1,1 @@
-Welcome to use NewX 1.0
+welcome to use NewX <span style="font-size: 16px">1.0</span>
