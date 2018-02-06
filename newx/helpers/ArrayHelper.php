@@ -36,16 +36,14 @@ class ArrayHelper
      */
     public static function value($arrays = [], $key, $default = null)
     {
-        $data = !empty($default) ? $default : null;
-
         if (empty($arrays) || !is_array($arrays)) {
-            return $data;
+            return $default;
         }
 
         if (is_array($key)) {
             foreach ($key as $item) {
                 if (!array_key_exists($item, $arrays)) {
-                    return $data;
+                    return $default;
                 }
                 $arrays = $arrays[$item];
             }
@@ -54,7 +52,7 @@ class ArrayHelper
             if (array_key_exists($key, $arrays)) {
                 return $arrays[$key];
             } else {
-                return $data;
+                return $default;
             }
         }
     }
