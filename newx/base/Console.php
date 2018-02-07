@@ -156,7 +156,8 @@ class Console extends BaseObject
         if (!method_exists($app, $action)) {
             throw new AppException('console action not exists: ' . $action);
         }
-        $app->{$action}(); // TODO 参数传递暂未实现
+
+        call_user_func_array([$app, $action], $this->params);
     }
 
     /**

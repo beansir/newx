@@ -9,6 +9,6 @@ class HomeController
 {
     public function actionIndex()
     {
-        echo "NewX Console\n";
+        echo "\nNewX Console :)\n";
     }
 }
