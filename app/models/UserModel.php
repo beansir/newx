@@ -1,13 +1,15 @@
 <?php
 /**
  * @author bean
- * @time 2018/2/24 0024 18:05
+ * @version: 1.0
  */
-
 namespace app\models;
 
+use newx\orm\base\Model;
 
-class UserModel
+class UserModel extends Model
 {
+    public $table = 'user';
 
+    public $db = 'default';
 }

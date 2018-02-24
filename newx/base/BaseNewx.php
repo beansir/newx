@@ -186,7 +186,7 @@ class BaseNewx
      * @param null $name
      * @return \newx\orm\base\Connection|null
      */
-    public static function getDb($name = null)
+    public static function getDb($name = 'default')
     {
         return \NewxOrm::getDb($name);
     }
