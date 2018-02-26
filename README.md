@@ -65,7 +65,7 @@ return [
 nx server web-socket
 ```
 
-## Migration
+## Migration数据迁移
 
 编辑数据库配置文件（edit configuration database file）
 
@@ -115,4 +115,12 @@ demo
 nx migrate // 所有未执行的迁移
 nx migrate 3 // 从最近新建迁移的前3个迁移
 nx migrate -2 // 从最近新建迁移的第2个迁移
+```
+
+## AES数据加密
+```php
+<?php
+$aes = new \newx\mcrypt\Aes(); // 默认CBC模式
+$str = $aes->encrypt($str); // 加密（加密后默认base64编码，可用第二个参数更改）
+$str = $aes->decrypt($str); // 解密
 ```
