@@ -71,14 +71,13 @@ class BaseController extends BaseObject
         // 渲染视图
         $html = $this->getViewFile()->render($data);
 
+        // 渲染布局
         if ($isLayout) {
-            // 渲染布局
             $data['content'] = $html;
             $html = $this->getLayoutFile()->render($data);
         }
 
-        echo $html;
-        exit;
+        return $html;
     }
 
     /**

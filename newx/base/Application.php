@@ -27,29 +27,40 @@ class Application extends BaseObject
     public $appName;
 
     /**
-     * 执行控制器
+     * 默认controller
+     * @var string
      */
-    public $controller;
-
     public $defaultController;
 
     /**
-     * 执行函数
+     * 默认action
+     * @var string
      */
-    public $action;
-
     public $defaultAction;
-
-    /**
-     * 返回数据
-     */
-    public $return;
 
     /**
      * 组件
      * @var Component
      */
     public $component;
+
+    /**
+     * 路由controller
+     * @var string
+     */
+    public $controller;
+
+    /**
+     * 路由action
+     * @var string
+     */
+    public $action;
+
+    /**
+     * 响应数据
+     * @var string|array|mixed
+     */
+    public $response;
 
     /**
      * Application constructor.
@@ -66,16 +77,25 @@ class Application extends BaseObject
     public function run()
     {
         try {
-            // 基础配置 解析路由 运行实例
-            $this->configure()->analysisRouter()->instance();
+            // 基础配置
+            $this->configure();
+
+            // 解析路由
+            $this->analysisRouter();
+
+            // run controller action
+            $run = new $this->controller();
+            if (!method_exists($run, $this->action)) {
+                throw new AppException('action not exists: ' . $this->action);
+            }
+            $this->response = $run->{$this->action}();
         } catch (BaseException $e) {
-            echo $e->throwOut();
-            exit;
+            exit($e->throwOut());
         }
     }
 
     /**
-     * 解析请求
+     * 解析路由
      * @throws AppException
      * @return $this
      */
@@ -121,19 +141,6 @@ class Application extends BaseObject
     }
 
     /**
-     * 运行实例
-     */
-    protected function instance()
-    {
-        // 创建实例
-        $run = new $this->controller();
-        if (!method_exists($run, $this->action)) {
-            throw new AppException('action not exists: ' . $this->action);
-        }
-        $this->return = $run->{$this->action}();
-    }
-
-    /**
      * 基础配置
      * @throws AppException
      * @return $this
@@ -171,13 +178,8 @@ class Application extends BaseObject
      */
     public function __destruct()
     {
-        if (!empty($this->return)) {
-            if (is_array($this->return)) {
-                print_r($this->return);
-            } else {
-                echo $this->return;
-            }
-            exit();
+        if ($this->response) {
+            output($this->response);
         }
     }
 }

@@ -11,6 +11,6 @@ class HomeController extends BaseController
 {
     public function actionIndex()
     {
-        $this->view('index');
+        return $this->view('index');
     }
 }

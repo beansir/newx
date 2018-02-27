@@ -25,13 +25,15 @@ if (!function_exists('output')) {
     /**
      * @param $data
      */
-    function output($data)
+    function output($data = null)
     {
-        if (is_array($data) || is_object($data)) {
-            echo "<pre>";
-            print_r($data);
-        } else {
-            echo $data;
+        if ($data) {
+            if (is_array($data) || is_object($data)) {
+                echo "<pre>";
+                print_r($data);
+            } else {
+                echo $data;
+            }
         }
     }
 }

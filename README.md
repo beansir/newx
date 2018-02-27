@@ -2,8 +2,7 @@
 
 NewX是一个轻量级的PHP框架。（NewX is a lightweight PHP framework.）
 
-## MVC（Model View Controller）
-目录结构
+## 目录结构
 * app // 应用目录（可自定义）
     * config // 配置目录
         * components.php // 组件配置 
@@ -33,12 +32,105 @@ NewX是一个轻量级的PHP框架。（NewX is a lightweight PHP framework.）
         * WebSocket.php // WebSocket业务层
 * newx // 框架目录
 
+## MVC（Model View Controller）
+
+##### 控制器 Controller
+```php
+<?php
+namespace app\controllers; // 命名空间必须与应用文件夹名以及应用配置中的应用名称保持一致
+use newx\base\BaseController;
+class HomeController extends BaseController // 控制器首字母大写并以Controller为后缀，继承框架底层控制器基类
+{
+    public function actionIndex() // 方法名首字母大写并以action为前缀
+    {
+        $data = [];
+        
+        // 方式一 布局视图渲染
+        $output = $this->view('index', $data);
+        
+        // 方式二 非布局视图渲染
+        $output = $this->view('index', $data, false);
+        
+        return $output;
+    }
+}
+```
+
+##### 模型 Model
+使用指南入口：[点我查看](https://github.com/BeanYellow/newx-orm)
+```php
+<?php
+namespace app\models;
+use newx\orm\base\Model;
+class UserModel extends Model // 模型首字母大写并以Model为后缀，继承框架底层模型基类
+{
+    public $table = 'user'; // 数据表
+    public $db = 'default'; // 数据库配置
+}
+```
+
+## Migration数据迁移
+
+##### 数据库配置文件
+console/config/database.php
+```php
+<?php
+return [
+    // 初始化以default数据库配置执行，初始化前请先配置此项
+    'default' => [
+        'host' => '127.0.0.1',
+        'user' => 'root',
+        'password' => 'root',
+        'db' => 'chat',
+        'type' => 'mysqli'
+    ]
+];
+```
+
+##### 初始化
+```
+nx migrate init
+```
+
+##### 新建迁移
+```
+nx migrate create table_user
+```
+
+##### 迁移方式1：全部迁移
+```
+nx migrate
+```
+
+##### 迁移方式2：指定迁移个数N
+```
+nx migrate N
+```
+
+##### 迁移方式3： 指定第N个迁移
+```
+nx migrate -N
+```
+
+##### demo
+```
+nx migrate // 所有未执行的迁移
+nx migrate 3 // 从最近新建迁移的前3个迁移
+nx migrate -2 // 从最近新建迁移的第2个迁移
+```
+
+## AES数据加密
+```php
+<?php
+$aes = new \newx\mcrypt\Aes(); // 默认CBC模式
+$str = $aes->encrypt($str); // 加密（加密后默认base64编码，可用第二个参数更改）
+$str = $aes->decrypt($str); // 解密
+```
+
 ## Server
 
-编辑配置文件（edit configuration file）
-
+##### 服务配置文件
 console/config/server.php
-
 ```php
 <?php
 return [
@@ -60,67 +152,7 @@ return [
 ];
 ```
 
-启动服务（start the service）
+##### 启动服务
 ```
 nx server web-socket
-```
-
-## Migration数据迁移
-
-编辑数据库配置文件（edit configuration database file）
-
-console/config/database.php
-
-```php
-<?php
-return [
-    // 初始化以default数据库配置执行，初始化前请先配置此项
-    'default' => [
-        'host' => '127.0.0.1',
-        'user' => 'root',
-        'password' => 'root',
-        'db' => 'chat',
-        'type' => 'mysqli'
-    ]
-];
-```
-
-初始化（init）
-```
-nx migrate init
-```
-
-新建迁移（create）
-```
-nx migrate create table_user
-```
-
-迁移方式1：全部迁移
-```
-nx migrate
-```
-
-迁移方式2：指定迁移个数N
-```
-nx migrate N
-```
-
-迁移方式3： 指定第N个迁移
-```
-nx migrate -N
-```
-
-demo
-```
-nx migrate // 所有未执行的迁移
-nx migrate 3 // 从最近新建迁移的前3个迁移
-nx migrate -2 // 从最近新建迁移的第2个迁移
-```
-
-## AES数据加密
-```php
-<?php
-$aes = new \newx\mcrypt\Aes(); // 默认CBC模式
-$str = $aes->encrypt($str); // 加密（加密后默认base64编码，可用第二个参数更改）
-$str = $aes->decrypt($str); // 解密
 ```
