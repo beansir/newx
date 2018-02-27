@@ -57,7 +57,6 @@ class HomeController extends BaseController // 控制器首字母大写并以Con
 ```
 
 #### 模型 Model
-使用指南入口：[点我查看](https://github.com/BeanYellow/newx-orm)
 ```php
 <?php
 namespace app\models;
@@ -68,6 +67,7 @@ class UserModel extends Model // 模型首字母大写并以Model为后缀，继
     public $db = 'default'; // 数据库配置
 }
 ```
+简洁优雅的数据库交互用法请参考[NewX ORM文档](https://github.com/BeanYellow/newx-orm)
 
 ## Migration数据迁移
 
