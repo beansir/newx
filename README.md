@@ -34,7 +34,7 @@ NewX是一个轻量级的PHP框架。（NewX is a lightweight PHP framework.）
 
 ## MVC（Model View Controller）
 
-##### 控制器 Controller
+#### 控制器 Controller
 ```php
 <?php
 namespace app\controllers; // 命名空间必须与应用文件夹名以及应用配置中的应用名称保持一致
@@ -56,7 +56,7 @@ class HomeController extends BaseController // 控制器首字母大写并以Con
 }
 ```
 
-##### 模型 Model
+#### 模型 Model
 使用指南入口：[点我查看](https://github.com/BeanYellow/newx-orm)
 ```php
 <?php
@@ -71,7 +71,7 @@ class UserModel extends Model // 模型首字母大写并以Model为后缀，继
 
 ## Migration数据迁移
 
-##### 数据库配置文件
+#### 数据库配置文件
 console/config/database.php
 ```php
 <?php
@@ -87,32 +87,32 @@ return [
 ];
 ```
 
-##### 初始化
+#### 初始化
 ```
 nx migrate init
 ```
 
-##### 新建迁移
+#### 新建迁移
 ```
 nx migrate create table_user
 ```
 
-##### 迁移方式1：全部迁移
+#### 迁移方式1：全部迁移
 ```
 nx migrate
 ```
 
-##### 迁移方式2：指定迁移个数N
+#### 迁移方式2：指定迁移个数N
 ```
 nx migrate N
 ```
 
-##### 迁移方式3： 指定第N个迁移
+#### 迁移方式3： 指定第N个迁移
 ```
 nx migrate -N
 ```
 
-##### demo
+#### Demo
 ```
 nx migrate // 所有未执行的迁移
 nx migrate 3 // 从最近新建迁移的前3个迁移
@@ -129,7 +129,7 @@ $str = $aes->decrypt($str); // 解密
 
 ## Server
 
-##### 服务配置文件
+#### 服务配置文件
 console/config/server.php
 ```php
 <?php
@@ -152,7 +152,7 @@ return [
 ];
 ```
 
-##### 启动服务
+#### 启动服务
 ```
 nx server web-socket
 ```
