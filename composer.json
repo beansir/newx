@@ -1,0 +1,15 @@
+{
+  "name": "bean/newx",
+  "description": "NewX - 简洁优雅的PHP框架",
+  "keywords": ["framework", "NewX"],
+  "license": "MIT",
+  "require": {
+    "php": ">=5.4"
+  },
+  "authors": [
+    {
+      "name": "bean",
+      "email": "yedenggaolou@sina.com"
+    }
+  ]
+}
