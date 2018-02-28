@@ -12,5 +12,6 @@
       "name": "bean",
       "email": "1052049021@qq.com"
     }
-  ]
+  ],
+  "minimum-stability": "stable"
 }
