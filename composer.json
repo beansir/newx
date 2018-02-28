@@ -4,12 +4,14 @@
   "keywords": ["framework", "NewX"],
   "license": "MIT",
   "require": {
-    "php": ">=5.4"
+    "php": ">=5.4",
+    "newx/framework": "1.0.0"
   },
   "authors": [
     {
       "name": "bean",
       "email": "yedenggaolou@sina.com"
     }
-  ]
+  ],
+  "minimum-stability": "dev"
 }
