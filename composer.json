@@ -4,8 +4,7 @@
   "keywords": ["framework", "NewX"],
   "license": "MIT",
   "require": {
-    "php": ">=5.4",
-    "newx/framework": "1.0"
+    "php": ">=5.4"
   },
   "authors": [
     {
