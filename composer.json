@@ -5,13 +5,12 @@
   "license": "MIT",
   "require": {
     "php": ">=5.4",
-    "newx/framework": "1.0.0"
+    "newx/framework": "1.0.*"
   },
   "authors": [
     {
       "name": "bean",
-      "email": "yedenggaolou@sina.com"
+      "email": "1052049021@qq.com"
     }
-  ],
-  "minimum-stability": "dev"
+  ]
 }
