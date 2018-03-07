@@ -4,11 +4,8 @@
  * @author: bean
  * @version: 1.0
  */
-
 namespace newx\base;
 
-use newx\data\DataBase;
-use newx\data\Query;
 use newx\helpers\ArrayHelper;
 
 class BaseNewx
@@ -38,6 +35,24 @@ class BaseNewx
     public static $classLoads = [];
 
     /**
+     * 加载基础数据
+     */
+    public static function load()
+    {
+        // 自动加载类
+        require NEWX_PATH . '/base/AutoLoader.php';
+
+        // 数据库ORM
+        require NEWX_PATH . '/orm/NewxOrm.php';
+
+        // 全局函数库
+        require NEWX_PATH . '/function.php';
+
+        // 第三方库名单
+        static::$thirdLibrary = require NEWX_PATH . '/config/thirdLibrary.php';
+    }
+
+    /**
      * 运行应用主体
      * @param array $config 基础配置
      */
@@ -45,7 +60,10 @@ class BaseNewx
     {
         // 加载ORM
         $db = ArrayHelper::value($config, 'database');
-        self::loadOrm($db);
+        \NewxOrm::run($db);
+
+        // 加载自定义函数库
+        self::loadCustomFunction();
 
         // 创建应用
         $app = new Application($config);
@@ -61,7 +79,10 @@ class BaseNewx
     {
         // 加载ORM
         $db = ArrayHelper::value($config, 'database');
-        self::loadOrm($db);
+        \NewxOrm::run($db);
+
+        // 加载自定义函数库
+        self::loadCustomFunction();
 
         $console = new Console($config, $argv);
         $console->run();
@@ -148,40 +169,6 @@ class BaseNewx
     }
 
     /**
-     * 加载基础数据
-     */
-    public static function load()
-    {
-        // 自动加载类
-        require NEWX_PATH . '/base/AutoLoader.php';
-
-        // 拓展库
-        self::loadLibrary();
-    }
-
-    /**
-     * 加载拓展库
-     */
-    private static function loadLibrary()
-    {
-        // 全局函数库
-        require NEWX_PATH . '/library/function.php';
-
-        // 第三方库名单
-        static::$thirdLibrary = require NEWX_PATH . '/config/thirdLibrary.php';
-    }
-
-    /**
-     * 加载ORM
-     * @param array $db 数据库配置
-     */
-    private static function loadOrm($db)
-    {
-        require NEWX_PATH . '/orm/NewxOrm.php';
-        \NewxOrm::run($db);
-    }
-
-    /**
      * 获取数据库连接
      * @param null $name
      * @return \newx\orm\base\Connection|null
@@ -189,5 +176,16 @@ class BaseNewx
     public static function getDb($name = 'default')
     {
         return \NewxOrm::getDb($name);
+    }
+
+    /**
+     * 加载自定义函数库
+     */
+    protected static function loadCustomFunction()
+    {
+        $file = \Newx::getDir('app') . 'config/function.php';
+        if (file_exists($file)) {
+            require_once $file;
+        }
     }
 }

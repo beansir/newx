@@ -1,7 +1,7 @@
 {
-  "name": "bean-huang/newx",
-  "description": "A simple and elegant PHP framework",
-  "keywords": ["NewX", "framework", "migration", "console", "ORM"],
+  "name": "newx/newx-orm",
+  "description": "A concise database object relational mapping",
+  "keywords": ["NewX", "ORM", "ActiveRecord"],
   "type": "library",
   "license": "MIT",
   "authors": [

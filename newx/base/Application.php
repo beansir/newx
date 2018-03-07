@@ -81,7 +81,7 @@ class Application extends BaseObject
             $this->configure();
 
             // 解析路由
-            $this->analysisRouter();
+            $this->parseRouter();
 
             // run controller action
             $run = new $this->controller();
@@ -99,9 +99,9 @@ class Application extends BaseObject
      * @throws AppException
      * @return $this
      */
-    protected function analysisRouter()
+    protected function parseRouter()
     {
-        $uris = explode('/', $_SERVER['REQUEST_URI']);
+        $uris = explode('/', $this->getRouter());
         unset($uris[0]);
 
         // 初始化
@@ -141,6 +141,16 @@ class Application extends BaseObject
     }
 
     /**
+     * 获取请求路由
+     * @return bool|string
+     */
+    protected function getRouter()
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        return substr($uri, 0, strrpos($uri, '?'));
+    }
+
+    /**
      * 基础配置
      * @throws AppException
      * @return $this
@@ -150,26 +160,26 @@ class Application extends BaseObject
         // 挂载应用配置
         Newx::setApp($this, $this->_config);
 
-        $web = ArrayHelper::value($this->_config, 'web');
-        if (empty($web)) {
+        $config = ArrayHelper::value($this->_config, 'app');
+        if (empty($config)) {
             throw new AppException("web config not exists");
         }
 
         // 设置时区
-        $timezone = ArrayHelper::value($web, 'timezone', 'Etc/GMT');
+        $timezone = ArrayHelper::value($config, 'timezone', 'Etc/GMT');
         IniHelper::setTimezone($timezone);
 
         // 应用名称
-        $this->appName = ArrayHelper::value($web, 'name');
+        $this->appName = ArrayHelper::value($config, 'name');
         if (empty($this->appName)) {
             throw new AppException("web config error: name");
         }
 
         // 默认控制器
-        $this->defaultController = ArrayHelper::value($web, 'controller', 'home');
+        $this->defaultController = ArrayHelper::value($config, 'controller', 'home');
 
         // 默认方法
-        $this->defaultAction = ArrayHelper::value($web, 'action', 'index');
+        $this->defaultAction = ArrayHelper::value($config, 'action', 'index');
         return $this;
     }
 

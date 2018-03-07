@@ -1,30 +1,29 @@
 <h2 align="center">NewX</h2>
 
-NewX是一个轻量级的PHP框架。（NewX is a lightweight PHP framework.）
+NewX是一个简洁优雅的PHP框架。（A simple and elegant PHP framework.）
 
 ## 目录结构
 * app // 应用目录（可自定义）
     * config // 配置目录
-        * components.php // 组件配置 
+        * component.php // 组件配置 
         * config.php // 配置文件
-        * databases.php // 数据库配置
-        * web.php // 应用配置
+        * database.php // 数据库配置
+        * function.php // 自定义全局函数
     * controllers // 控制器目录
         * HomeController.php // 默认控制器（可于应用配置中更改）
     * models // 模型目录
     * views // 视图目录
         * home // 控制器视图目录
             * index.php 视图文件
-        * layouts // 视图布局目录
-            * main.php // 布局文件
-    * web // 资源目录
+        * layout.php // 视图布局文件
+    * public // 资源目录
         * index.php // 入口文件
 * console // 控制台目录
     * config
-        * app.php // 应用配置
-        * components.php
+        * component.php
         * config.php
-        * databases.php
+        * database.php
+        * function.php
         * server.php // 服务配置
     * controllers
     * migrations
@@ -46,6 +45,7 @@ class HomeController extends BaseController // 控制器首字母大写并以Con
         $data = [];
         
         // 方式一 布局视图渲染
+        $this->layout = 'test'; // 自定义布局文件名，默认layout，也可以目录形式命名，例如：test/test
         $output = $this->view('index', $data);
         
         // 方式二 非布局视图渲染

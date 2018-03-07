@@ -16,13 +16,7 @@ class BaseController extends BaseObject
      * 布局文件
      * @var string
      */
-    public $layout = 'main';
-
-    /**
-     * 布局文件目录
-     * @var string
-     */
-    public $layoutPath = 'layouts';
+    public $layout = 'layout';
 
     /**
      * 视图文件名
@@ -105,7 +99,7 @@ class BaseController extends BaseObject
      */
     private function getLayout()
     {
-        return $this->getView() . '/' . $this->layoutPath . '/' . $this->layout;
+        return $this->getView() . '/' . $this->layout;
     }
 
     /**

@@ -5,7 +5,6 @@
  * @time: 2017-3-11 16:51:27
  * @version 1.0
  */
-
 namespace newx\base;
 
 use Newx;
