@@ -1,5 +1,5 @@
 {
-  "name": "bean-huang/newx",
+  "name": "beansir/newx",
   "description": "A simple and elegant PHP framework",
   "keywords": ["NewX", "framework", "migration", "console", "ORM"],
   "type": "library",
@@ -12,6 +12,11 @@
   ],
   "require": {
     "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "newx\\": "newx"
+    }
   },
   "minimum-stability": "stable"
 }
