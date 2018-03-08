@@ -92,7 +92,7 @@ class UserModel extends Model // 模型首字母大写并以Model为后缀，继
 ## Migration数据迁移
 
 #### 数据库配置文件
-console/config/database.php
+migration/config/config.php
 ```php
 <?php
 return [
@@ -109,34 +109,34 @@ return [
 
 #### 初始化
 ```
-nx migrate init
+migrate init
 ```
 
 #### 新建迁移
 ```
-nx migrate create table_user
+migrate create table_user
 ```
 
 #### 迁移方式1：全部迁移
 ```
-nx migrate
+migrate
 ```
 
 #### 迁移方式2：指定迁移个数N
 ```
-nx migrate N
+migrate N
 ```
 
 #### 迁移方式3： 指定第N个迁移
 ```
-nx migrate -N
+migrate -N
 ```
 
 #### Demo
 ```
-nx migrate // 所有未执行的迁移
-nx migrate 3 // 从最近新建迁移的前3个迁移
-nx migrate -2 // 从最近新建迁移的第2个迁移
+migrate // 所有未执行的迁移
+migrate 3 // 从最近新建迁移的前3个迁移
+migrate -2 // 从最近新建迁移的第2个迁移
 ```
 
 ## AES数据加密
@@ -150,12 +150,12 @@ $str = $aes->decrypt($str); // 解密
 ## Server
 
 #### 服务配置文件
-console/config/server.php
+service/config/config.php
 ```php
 <?php
 return [
-    // server config
-    'server' => [
+    'app' => [
+        // 服务器配置
         'tcp' => [
             'host' => '0.0.0.0',
             'port' => 9501
@@ -169,10 +169,20 @@ return [
             'port' => 9503
         ],
     ],
+    'database' => [
+        // 数据库配置，非必须配置项
+        'default' => [
+            'host'      => '127.0.0.1',
+            'user'      => 'user',
+            'password'  => 'password',
+            'db'        => 'db',
+            'type'      => 'mysqli'
+        ],
+    ]
 ];
 ```
 
 #### 启动服务
 ```
-nx server web-socket
+server web-socket
 ```
