@@ -1,6 +1,6 @@
 <h2 align="center">NewX</h2>
 
-NewX是一个简洁优雅的PHP框架。（A simple and elegant PHP framework.）
+NewX是一个简洁优雅的PHP框架，包含了MVC结构、数据库关系映射（ORM）、数据迁移（Migration）、控制台应用（Console）、服务器应用（Server）等功能。
 
 ## 安装说明
 

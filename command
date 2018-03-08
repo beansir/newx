@@ -1,4 +1,5 @@
 #!/usr/bin/env php
 <?php
+defined('PROJECT_PATH') or define('PROJECT_PATH', __DIR__);
 
-require __DIR__ . '/vendor/beansir/newx-console/command';
+require PROJECT_PATH . '/vendor/beansir/newx-console/command';
