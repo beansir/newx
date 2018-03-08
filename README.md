@@ -2,6 +2,23 @@
 
 NewX是一个简洁优雅的PHP框架。（A simple and elegant PHP framework.）
 
+## 安装说明
+
+#### 下载方式一
+直接在github点击下载zip包
+
+#### 下载方式二
+使用git工具
+```
+git clone https://github.com/beansir/newx.git
+```
+
+#### 开始安装
+请先安装composer后，cmd在框架根目录执行以下命令
+```
+composer install
+```
+
 ## 目录结构
 * app // 应用目录（可自定义）
     * config // 配置目录
@@ -20,16 +37,19 @@ NewX是一个简洁优雅的PHP框架。（A simple and elegant PHP framework.�
         * index.php // 入口文件
 * console // 控制台目录
     * config
-        * component.php
         * config.php
-        * database.php
         * function.php
-        * server.php // 服务配置
-    * controllers
-    * migrations
-    * server // 服务目录
-        * WebSocket.php // WebSocket业务层
-* newx // 框架目录
+    * Home.php
+* migration // 数据迁移目录
+    * config
+        * config.php
+    * tasks // 数据迁移任务
+* service // 服务目录
+    * config
+        * config.php
+        * function.php
+    * WebSocket.php
+* vendor // 框架目录
 
 ## MVC（Model View Controller）
 
