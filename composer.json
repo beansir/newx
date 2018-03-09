@@ -1,7 +1,7 @@
 {
   "name": "beansir/newx",
-  "description": "A simple and elegant PHP framework",
-  "keywords": ["newx", "framework"],
+  "description": "the simple and elegant PHP framework",
+  "keywords": ["newx", "framework", "orm", "migration", "console"],
   "type": "project",
   "license": "MIT",
   "authors": [
