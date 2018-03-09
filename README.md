@@ -94,6 +94,66 @@ class UserModel extends Model // 模型首字母大写并以Model为后缀，继
 ```
 简洁优雅的数据库交互用法请参考[NewX ORM文档](https://github.com/BeanYellow/newx-orm)
 
+## Request
+
+#### 场景一
+Controller中获取请求数据
+```php
+<?php
+namespace app\controllers;
+class HomeController extends \newx\base\BaseController
+{
+    public function actionIndex() 
+    {
+        $get_all = $this->getRequest()->get(); // $_GET
+        $get_name = $this->getRequest()->get('name');
+        $post_all = $this->getRequest()->post(); // $_POST
+        $post_name = $this->getRequest()->post('name');
+        $header = $this->getRequest()->header(); // HEADER
+    }
+}
+```
+
+#### 场景二
+Model中获取请求数据
+```php
+<?php
+namespace app\models;
+class UserModel
+{
+    public function test()
+    {
+         $request = \newx\base\Request::getInstance();
+         $get_all = $request->get();
+         $get_name = $request->get('name');
+         $post_all = $request->post();
+         $post_name = $request->post('name');
+         $header = $request->header();
+    }
+}
+```
+
+## Response
+
+```php
+<?php
+namespace app\controllers;
+class HomeController extends \newx\base\BaseController
+{
+    public function actionIndex() 
+    {
+        // JSON格式（默认）
+        $response = $this->getResponse()->success('success', []); // 成功响应
+        $response = $this->getResponse()->error('error', []); // 失败响应
+        
+        // XML格式
+        $response = $this->getResponse(\newx\base\Response::CONTENT_TYPE_XML)->success('success', []);
+        
+        return $response;
+    }
+}
+```
+
 ## Migration数据迁移
 
 #### 数据库配置文件
